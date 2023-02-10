@@ -1,0 +1,132 @@
+{
+  "actions" : [
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "EditorOnly",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.environment"
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC",
+        "condition" : 1,
+        "rhs" : {
+          "value" : "editor"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "$app.strings = {\n  \"en\": {\n    \"editorOnly\": \"Editor Only\"\n  },\n  \"zh-Hans\": {\n    \"editorOnly\": \"仅在编辑器中可用\"\n  }\n}\n$actions.resolve($l10n(\"editorOnly\"))\n"
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.full-text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "\/\/ Get input\ntry {\n  const text = JSON.parse($actions.inputValue)\n\n  $actions.resolve(JSON.stringify(text, null, 4))\n} catch {\n  $actions.reject(\"Not json content\");\n}\n\n\/\/ Exception handling:\n\/\/  $actions.reject(\"Error\");\n\/\/  $actions.finish();"
+        }
+      }
+    },
+    {
+      "type" : "@editor.set-text",
+      "parameters" : {
+        "createIfNotExists" : false,
+        "location" : 0,
+        "filename" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.file-name"
+            }
+          ]
+        },
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Json Format",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "wand.and.stars",
+    "color" : "#FB6666"
+  },
+  "clientVersion" : 1052
+}

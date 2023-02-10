@@ -1,0 +1,114 @@
+{
+  "actions" : [
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "EditorOnly",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.environment"
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC",
+        "condition" : 1,
+        "rhs" : {
+          "value" : "editor"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "$app.strings = {\n  \"en\": {\n    \"editorOnly\": \"Editor Only\"\n  },\n  \"zh-Hans\": {\n    \"editorOnly\": \"仅在编辑器中可用\"\n  }\n}\n$actions.resolve($l10n(\"editorOnly\"))\n"
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@util.set-clipboard",
+      "parameters" : {
+        "mode" : 0,
+        "localOnly" : true,
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.full-text"
+            }
+          ]
+        },
+        "expireAfter" : {
+          "value" : "0"
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "Copied"
+        }
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Copy Content",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "doc.on.doc",
+    "color" : "#FB6666"
+  },
+  "clientVersion" : 1156
+}

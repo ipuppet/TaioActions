@@ -1,0 +1,614 @@
+{
+  "actions" : [
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "EditorOnly",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.environment"
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC",
+        "condition" : 1,
+        "rhs" : {
+          "value" : "editor"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "$app.strings = {\n  \"en\": {\n    \"editorOnly\": \"Editor Only\"\n  },\n  \"zh-Hans\": {\n    \"editorOnly\": \"仅在编辑器中可用\"\n  }\n}\n$actions.resolve($l10n(\"editorOnly\"))\n"
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "8669DA7E-015B-4EC9-86D2-267D94A292FC"
+      }
+    },
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "GetTextFromFile",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "D64C424E-E7FA-4FE1-A4F5-1E98DB6E83F6",
+        "condition" : 1,
+        "rhs" : {
+          "value" : ""
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.selection-text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.selection-text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "D64C424E-E7FA-4FE1-A4F5-1E98DB6E83F6"
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.full-text"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "D64C424E-E7FA-4FE1-A4F5-1E98DB6E83F6"
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "origin"
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "content"
+        }
+      }
+    },
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "GetUrls",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "input"
+        }
+      }
+    },
+    {
+      "type" : "@util.get-clipboard",
+      "parameters" : {
+        "mode" : 0
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "let text = $actions.getVar(\"input\")\nif (text === \"\") text = $actions.inputValue\nconst regex = \/([a-zA-Z0-9]+:\\\/\\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([:0-9])*([\\\/\\w\\#\\.\\-\\?\\=\\&\\%\\u4e00-\\u9fa5])*\\s?\/ig\nconst urls = text.match(regex, text) ?? []\n\n$actions.resolve(urls.join(\"\\n\"))\n\n"
+        }
+      }
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "AE083683-DAFF-46E0-B435-BB7C5F5046F7",
+        "condition" : 0,
+        "rhs" : {
+          "value" : ""
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "NoUrlToast",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "$app.strings = {\n  \"en\": {\n    \"noUrlToastTitle\": \"No URL detected\"\n  },\n  \"zh-Hans\": {\n    \"noUrlToastTitle\": \"未匹配到 URL\"\n  }\n}\n$actions.resolve($l10n(\"noUrlToastTitle\"))\n"
+        }
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "AE083683-DAFF-46E0-B435-BB7C5F5046F7"
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "AE083683-DAFF-46E0-B435-BB7C5F5046F7"
+      }
+    },
+    {
+      "type" : "@flow.foreach-begin",
+      "parameters" : {
+        "blockIdentifier" : "8E4AFD3A-7408-4DEB-A639-4FC667F7DD6F",
+        "mode" : 0,
+        "pattern" : {
+          "value" : ""
+        },
+        "reverse" : false,
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "group" : 0
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "url"
+        }
+      }
+    },
+    {
+      "type" : "@text.encode",
+      "parameters" : {
+        "mode" : 0,
+        "decode" : false,
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "url"
+            }
+          ]
+        },
+        "base64Options" : 0
+      }
+    },
+    {
+      "type" : "@text.replace",
+      "parameters" : {
+        "mode" : 0,
+        "pattern" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "url"
+            }
+          ]
+        },
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "content"
+            }
+          ]
+        },
+        "replacement" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "content"
+        }
+      }
+    },
+    {
+      "type" : "@flow.foreach-end",
+      "parameters" : {
+        "blockIdentifier" : "8E4AFD3A-7408-4DEB-A639-4FC667F7DD6F"
+      }
+    },
+    {
+      "type" : "@ui.alert",
+      "parameters" : {
+        "showCancelButton" : true,
+        "message" : {
+          "value" : ""
+        },
+        "title" : {
+          "value" : ""
+        },
+        "actions" : [
+          {
+            "title" : {
+              "value" : "Show Diff"
+            },
+            "value" : {
+              "value" : "0"
+            }
+          },
+          {
+            "title" : {
+              "value" : "Apply"
+            },
+            "value" : {
+              "value" : "1"
+            }
+          },
+          {
+            "title" : {
+              "value" : ""
+            },
+            "value" : {
+              "value" : "2"
+            }
+          },
+          {
+            "title" : {
+              "value" : ""
+            },
+            "value" : {
+              "value" : "3"
+            }
+          },
+          {
+            "title" : {
+              "value" : ""
+            },
+            "value" : {
+              "value" : "4"
+            }
+          },
+          {
+            "title" : {
+              "value" : ""
+            },
+            "value" : {
+              "value" : "5"
+            }
+          },
+          {
+            "title" : {
+              "value" : ""
+            },
+            "value" : {
+              "value" : "6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "FE39E23C-5149-4EB0-AC9D-4F2EBAEC5D34",
+        "condition" : 0,
+        "rhs" : {
+          "value" : "0"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@ui.render-diff",
+      "parameters" : {
+        "fullScreen" : false,
+        "rhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "content"
+            }
+          ]
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "origin"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.restart"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "FE39E23C-5149-4EB0-AC9D-4F2EBAEC5D34"
+      }
+    },
+    {
+      "type" : "@text.replace",
+      "parameters" : {
+        "mode" : 0,
+        "pattern" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "origin"
+            }
+          ]
+        },
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.full-text"
+            }
+          ]
+        },
+        "replacement" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "content"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@editor.set-text",
+      "parameters" : {
+        "createIfNotExists" : false,
+        "location" : 0,
+        "filename" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@editor.file-name"
+            }
+          ]
+        },
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "FE39E23C-5149-4EB0-AC9D-4F2EBAEC5D34"
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "URL Encode",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "link",
+    "color" : "#A777FF"
+  },
+  "clientVersion" : 1164
+}

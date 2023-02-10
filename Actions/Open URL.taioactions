@@ -1,0 +1,263 @@
+{
+  "actions" : [
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "GetUrls",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "input"
+        }
+      }
+    },
+    {
+      "type" : "@util.get-clipboard",
+      "parameters" : {
+        "mode" : 0
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "let text = $actions.getVar(\"input\")\nif (text === \"\") text = $actions.inputValue\nconst regex = \/([a-zA-Z0-9]+:\\\/\\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([:0-9])*([\\\/\\w\\#\\.\\-\\?\\=\\&\\%\\u4e00-\\u9fa5])*\\s?\/ig\nconst urls = text.match(regex, text) ?? []\n\n$actions.resolve(urls.join(\"\\n\"))\n\n"
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "url"
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "const urlStr = $actions.inputValue?.trim() ?? \"\"\nif (urlStr.length === 0) {\n  $actions.resolve(0)\n}\n\nconst urls = urlStr.split(\"\\n\") ?? []\n$actions.resolve(urls.length)\n"
+        }
+      }
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "F6CD5801-2CBF-44A5-B563-A773B0B56B6A",
+        "condition" : 0,
+        "rhs" : {
+          "value" : "0"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "NoUrlToast",
+          "tokens" : [
+
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.javascript",
+      "parameters" : {
+        "script" : {
+          "value" : "$app.strings = {\n  \"en\": {\n    \"noUrlToastTitle\": \"No URL detected\"\n  },\n  \"zh-Hans\": {\n    \"noUrlToastTitle\": \"未匹配到 URL\"\n  }\n}\n$actions.resolve($l10n(\"noUrlToastTitle\"))\n"
+        }
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 0,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.finish"
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "F6CD5801-2CBF-44A5-B563-A773B0B56B6A"
+      }
+    },
+    {
+      "type" : "@flow.if",
+      "parameters" : {
+        "blockIdentifier" : "D31658F9-61FB-462F-8A78-924FBCECCAD3",
+        "condition" : 1,
+        "rhs" : {
+          "value" : "1"
+        },
+        "lhs" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@ui.menu",
+      "parameters" : {
+        "prompt" : {
+          "value" : ""
+        },
+        "selectAllByDefault" : false,
+        "multiValue" : false,
+        "lines" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "url"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@flow.set-variable",
+      "parameters" : {
+        "value" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "name" : {
+          "value" : "url"
+        }
+      }
+    },
+    {
+      "type" : "@flow.else",
+      "parameters" : {
+        "blockIdentifier" : "D31658F9-61FB-462F-8A78-924FBCECCAD3"
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "D31658F9-61FB-462F-8A78-924FBCECCAD3"
+      }
+    },
+    {
+      "type" : "@text.encode",
+      "parameters" : {
+        "mode" : 0,
+        "decode" : false,
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "url"
+            }
+          ]
+        },
+        "base64Options" : 0
+      }
+    },
+    {
+      "type" : "@util.open-url",
+      "parameters" : {
+        "url" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "fullScreen" : false,
+        "browser" : 1
+      }
+    },
+    {
+      "type" : "@flow.endif",
+      "parameters" : {
+        "blockIdentifier" : "F6CD5801-2CBF-44A5-B563-A773B0B56B6A"
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Open URL",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "paperplane",
+    "color" : "#10ADC0"
+  },
+  "clientVersion" : 32
+}

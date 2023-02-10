@@ -1,0 +1,33 @@
+{
+  "actions" : [
+    {
+      "type" : "@editor.new",
+      "parameters" : {
+        "location" : 1,
+        "openInEditor" : true,
+        "filename" : {
+          "value" : "ClipEditor.md"
+        },
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "overwriteIfExists" : true
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Edit Clip",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "square.and.pencil",
+    "color" : "#3FA1F8"
+  },
+  "clientVersion" : 836
+}

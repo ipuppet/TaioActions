@@ -1,0 +1,41 @@
+{
+  "actions" : [
+    {
+      "type" : "@comment",
+      "parameters" : {
+        "text" : {
+          "value" : "Clean clipboard (set to empty text)."
+        }
+      }
+    },
+    {
+      "type" : "@util.set-clipboard",
+      "parameters" : {
+        "mode" : 0,
+        "localOnly" : true,
+        "text" : {
+          "value" : ""
+        }
+      }
+    },
+    {
+      "type" : "@ui.toast",
+      "parameters" : {
+        "style" : 1,
+        "waitUntilDone" : false,
+        "title" : {
+          "value" : "Cleared"
+        }
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Clean Clipboard",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "trash",
+    "color" : "#A777FF"
+  },
+  "clientVersion" : 2
+}

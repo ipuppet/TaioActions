@@ -2,6 +2,8 @@
 
 ## b23clean
 > 清除 b23.tv 追踪参数
+> 
+[GitHub](https://github.com/ipuppet/b23clean)
 
 [b23clean](./Actions/b23clean.taioactions)
 

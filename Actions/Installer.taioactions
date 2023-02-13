@@ -1,0 +1,73 @@
+{
+  "actions" : [
+    {
+      "type" : "@ui.text-input",
+      "parameters" : {
+        "prompt" : {
+          "value" : "Input URL"
+        },
+        "keyboardType" : 0,
+        "initialText" : {
+          "value" : ""
+        },
+        "singleLineText" : false
+      }
+    },
+    {
+      "type" : "@text.encode",
+      "parameters" : {
+        "mode" : 0,
+        "decode" : false,
+        "text" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "base64Options" : 0
+      }
+    },
+    {
+      "type" : "@text",
+      "parameters" : {
+        "text" : {
+          "value" : "taio:\/\/actions?action=import&url=$",
+          "tokens" : [
+            {
+              "location" : 33,
+              "value" : "@input"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type" : "@util.open-url",
+      "parameters" : {
+        "url" : {
+          "value" : "$",
+          "tokens" : [
+            {
+              "location" : 0,
+              "value" : "@input"
+            }
+          ]
+        },
+        "fullScreen" : false,
+        "browser" : 0
+      }
+    }
+  ],
+  "buildVersion" : 1,
+  "name" : "Installer",
+  "clientMinVersion" : 1,
+  "summary" : "",
+  "icon" : {
+    "glyph" : "tray.and.arrow.down",
+    "color" : "#A777FF"
+  },
+  "clientVersion" : 1202
+}

@@ -11,10 +11,16 @@
 taio://actions?action=import&url=https%3A%2F%2Fraw.githubusercontent.com%2Fipuppet%2FTaioActions%2Fmain%2FActions%2FInstaller.taioactions
 
 ## b23clean
-> 清除 b23.tv 追踪参数
+> 清除 b23.tv 追踪参数  
 > [GitHub](https://github.com/ipuppet/b23clean)
 
 [b23clean](https://raw.githubusercontent.com/ipuppet/TaioActions/main/Actions/b23clean.taioactions)
+
+## Beautify
+> 美化 JS CSS HTML  
+> 使用 [beautify-web/js-beautify](https://github.com/beautify-web/js-beautify) 实现
+
+[Beautify](https://raw.githubusercontent.com/ipuppet/TaioActions/main/Actions/Beautify.taioactions)
 
 ## Clean Clipboard
 > 清空当前剪切板

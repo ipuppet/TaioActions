@@ -38,7 +38,7 @@
       "type" : "@flow.javascript",
       "parameters" : {
         "script" : {
-          "value" : "let text = $actions.getVar(\"input\")\nif (text === \"\") text = $actions.inputValue\nconst regex = \/([a-zA-Z0-9]+:\\\/\\\/)([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([:0-9])*([\\\/\\w\\#\\.\\-\\?\\=\\&\\%\\u4e00-\\u9fa5])*\\s?\/ig\nconst urls = text.match(regex, text) ?? []\n\n$actions.resolve(urls.join(\"\\n\"))\n\n"
+          "value" : "let text = $actions.getVar(\"input\")\nif (text === \"\") text = $actions.inputValue\n\nfunction getUrls(text) {\n    \/\/ 正则表达式用于匹配标准http和https链接，包括中文字符\r\n    const httpRegex = \/https?:\\\/\\\/[\\w-]+(\\.[\\w-]+)*([\\p{Script=Han}\\w.,@?^=%&:\/~+#()\\-]*[\\w@?^=%&\/~+#()\\-])?\/giu\r\n    \/\/ 正则表达式用于匹配iOS URL Scheme（假设scheme后面是:\/\/），包括中文字符\r\n    const iosSchemeRegex = \/\\b\\w+:\\\/\\\/[\\w-]+(\\.[\\w-]+)*([\\p{Script=Han}\\w.,@?^=%&:\/~+#()\\-]*[\\w@?^=%&\/~+#()\\-])?\/giu\r\n\r\n    \/\/ 使用正则表达式查找匹配项\r\n    const httpUrls = text.match(httpRegex) || []\r\n    const iosUrls = text.match(iosSchemeRegex) || []\r\n\r\n    \/\/ 合并两个数组并去重\r\n    const allUrls = [...new Set([...httpUrls, ...iosUrls])]\r\n\r\n    return allUrls\r\n}\n\nconst urls = getUrls(text)\n$actions.resolve(urls.join(\"\\n\"))\n"
         }
       }
     },

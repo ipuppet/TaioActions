@@ -1,0 +1,7 @@
+"COPY" = "复制";
+"COPIED" = "已复制";
+
+"b23clean.converting" = "正在转换...";
+"b23clean.noUrl" = "未检测到链接";
+"b23clean.noBiliUrl" = "未检测到 bilibili 链接";
+"b23clean.success" = "已转换为 BV 视频链接";

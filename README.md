@@ -11,8 +11,7 @@
 taio://actions?action=import&url=https%3A%2F%2Fraw.githubusercontent.com%2Fipuppet%2FTaioActions%2Fmain%2FActions%2FInstaller.taioactions
 
 ## b23clean
-> 清除 b23.tv 追踪参数  
-> [GitHub](https://github.com/ipuppet/b23clean)
+> 清除 b23.tv 追踪参数
 
 [b23clean](https://raw.githubusercontent.com/ipuppet/TaioActions/main/Actions/b23clean.taioactions)
 

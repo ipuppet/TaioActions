@@ -1,0 +1,7 @@
+"COPY" = "Copy";
+"COPIED" = "Copied";
+
+"b23clean.converting" = "Converting...";
+"b23clean.noUrl" = "No link detected";
+"b23clean.noBiliUrl" = "bilibili link not detected";
+"b23clean.success" = "Converted to BV video link";

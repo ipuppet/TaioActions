@@ -57,7 +57,7 @@ async function main() {
 
         loading.show()
         url = await cleanUrl(url)
-        loading.remove()
+        loading.remove() // $actions.resolve 会结束运行，不能用 finally
 
         await $ui.alert({
             title: $l10n("b23clean.success"),

@@ -1,0 +1,16 @@
+{
+    "info": {
+        "name": "Juice",
+        "version": "0.0.1",
+        "author": "ipuppet",
+        "module": false
+    },
+    "settings": {
+        "theme": "auto",
+        "minSDKVer": "2.19.0",
+        "minOSVer": "13.0.0",
+        "idleTimerDisabled": false,
+        "keyboardToolbarEnabled": true,
+        "rotateDisabled": false
+    }
+}

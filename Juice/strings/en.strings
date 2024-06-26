@@ -1,0 +1,11 @@
+"ALERT_INFO" = "Alert";
+"NONE" = "None";
+"FAILED_TO_LOAD_VIEW" = "Faild to load view";
+"VIEW_NOT_PROVIDED" = "The view is not provided";
+"UNCATEGORIZED" = "Uncategorized";
+
+"OK" = "OK";
+"START" = "Start";
+"CANCEL" = "Cancel";
+
+"COPY" = "Copy";

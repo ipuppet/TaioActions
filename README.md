@@ -23,6 +23,19 @@ taio://actions?action=import&url=https%3A%2F%2Fraw.githubusercontent.com%2Fipupp
 
 [Beautify](https://raw.githubusercontent.com/ipuppet/TaioActions/main/Actions/Beautify.taioactions)
 
+## Juice
+
+> 将 CSS 属性内联到 style 属性中  
+> 使用 [Automattic/juice](https://github.com/Automattic/juice) 实现
+
+### 使用方法
+
+作为模块使用，请在您自己的动作中引用此动作。
+
+输入 HTML 内容，返回内联 CSS 后的内容。
+
+[Juice](https://raw.githubusercontent.com/ipuppet/TaioActions/main/Actions/Juice.taioactions)
+
 ## Clean Clipboard
 
 > 清空当前剪切板

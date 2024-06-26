@@ -56,24 +56,20 @@ function injectContent() {
 
 function buildTextActions() {
     const script = fs.readFileSync(distEntryPath, "utf-8")
-    const folder = path.join(__dirname, "templates")
-    const templates = fs.readdirSync(folder)
-    templates.forEach(fileName => {
-        const filePath = path.join(folder, fileName)
-        const fileContent = fs.readFileSync(filePath, "utf-8")
-        const textAction = JSON.parse(fileContent)
+    const template = path.join(__dirname, "template.json")
+    const fileContent = fs.readFileSync(template, "utf-8")
+    const textAction = JSON.parse(fileContent)
 
-        textAction.name = config.info.name
+    textAction.name = config.info.name
 
-        for (let i = 0; i < textAction.actions.length; i++) {
-            if (textAction.actions[i].type === "@flow.javascript") {
-                textAction.actions[i].parameters.script.value = script
-                break
-            }
+    for (let i = 0; i < textAction.actions.length; i++) {
+        if (textAction.actions[i].type === "@flow.javascript") {
+            textAction.actions[i].parameters.script.value = script
+            break
         }
-        const outputPath = path.join(__dirname, `dist/${outputName}-${fileName}`)
-        fs.writeFileSync(outputPath, JSON.stringify(textAction, null, 4))
-    })
+    }
+    const outputPath = path.join(__dirname, `dist/${outputName}.json`)
+    fs.writeFileSync(outputPath, JSON.stringify(textAction, null, 4))
 }
 
 function injectPackageJson(packageJson) {

@@ -1,0 +1,11 @@
+"ALERT_INFO" = "提示";
+"NONE" = "什么都没有";
+"FAILED_TO_LOAD_VIEW" = "加载视图失败";
+"VIEW_NOT_PROVIDED" = "未提供该视图";
+"UNCATEGORIZED" = "未分类";
+
+"OK" = "好";
+"START" = "开始";
+"CANCEL" = "取消";
+
+"COPY" = "复制";

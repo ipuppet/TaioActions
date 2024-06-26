@@ -6,15 +6,15 @@ const config = JSON.parse(fs.readFileSync(path.join(__dirname, "config.json"), "
 
 const outputName = config.info.name
 const distEntryPath = path.join(__dirname, `dist/${outputName}.js`)
-const entryFile = "main.js"
+const entryFileContent = fs.readFileSync(path.join(__dirname, "main.js"), "utf-8")
+
+const entryFile = "main.build.js"
 const entryFilePath = path.join(__dirname, entryFile)
-const entryFileContent = fs.readFileSync(entryFilePath, "utf-8")
 
 function injectContent() {
     const stringsFolder = path.join(__dirname, "strings")
     const stringsFiles = fs.readdirSync(stringsFolder)
     const localizedText = {}
-
     stringsFiles.forEach(fileName => {
         if (path.extname(fileName) !== ".strings") {
             return
@@ -33,7 +33,6 @@ function injectContent() {
             }
         })
     })
-
     const stringsText = `$app.strings = ${JSON.stringify(localizedText)};`
 
     const configSettings = Object.keys(config.settings)
@@ -57,20 +56,24 @@ function injectContent() {
 
 function buildTextActions() {
     const script = fs.readFileSync(distEntryPath, "utf-8")
-    const template = path.join(__dirname, "template.json")
-    const fileContent = fs.readFileSync(template, "utf-8")
-    const textAction = JSON.parse(fileContent)
+    const folder = path.join(__dirname, "templates")
+    const templates = fs.readdirSync(folder)
+    templates.forEach(fileName => {
+        const filePath = path.join(folder, fileName)
+        const fileContent = fs.readFileSync(filePath, "utf-8")
+        const textAction = JSON.parse(fileContent)
 
-    textAction.name = config.info.name
+        textAction.name = config.info.name
 
-    for (let i = 0; i < textAction.actions.length; i++) {
-        if (textAction.actions[i].type === "@flow.javascript") {
-            textAction.actions[i].parameters.script.value = script
-            break
+        for (let i = 0; i < textAction.actions.length; i++) {
+            if (textAction.actions[i].type === "@flow.javascript") {
+                textAction.actions[i].parameters.script.value = script
+                break
+            }
         }
-    }
-    const outputPath = path.join(__dirname, `dist/${outputName}.json`)
-    fs.writeFileSync(outputPath, JSON.stringify(textAction, null, 4))
+        const outputPath = path.join(__dirname, `dist/${outputName}-${fileName}`)
+        fs.writeFileSync(outputPath, JSON.stringify(textAction, null, 4))
+    })
 }
 
 function injectPackageJson(packageJson) {
@@ -101,13 +104,13 @@ async function build() {
         buildTextActions()
     } catch (error) {
         if (error.stdout) {
-            console.log(error.stdout.toString())
+            console.error(error.stdout.toString())
         } else {
-            console.log(error)
+            console.error(error)
         }
     } finally {
         // 恢复文件内容
-        fs.writeFileSync(entryFilePath, entryFileContent)
+        fs.unlinkSync(entryFilePath)
         fs.writeFileSync(packageJsonPath, packageJsonContent)
     }
 }

@@ -1,0 +1,28 @@
+{
+    "actions": [
+        {
+            "type": "@comment",
+            "parameters": {
+                "text": {
+                    "value": "b23.tv trace parameter cleanup"
+                }
+            }
+        },
+        {
+            "type": "@flow.javascript",
+            "parameters": {
+                "script": {
+                    "value": ""
+                }
+            }
+        }
+    ],
+    "buildVersion": 1,
+    "clientMinVersion": 1,
+    "summary": "",
+    "icon": {
+        "glyph": "trash",
+        "color": "#FF3300"
+    },
+    "clientVersion": 592
+}
